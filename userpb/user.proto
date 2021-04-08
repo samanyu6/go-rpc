@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package main;
 
-option go_package = "userpb";
+option go_package = "grpc/";
 
 // user model struct defn
 message userModel {
@@ -30,11 +30,11 @@ message idListResponse {
     repeated userModel response = 1;
 }
 
-service idService {
+service IdService {
     rpc findId(getId) returns (idResponse) {};
 }
 
-service idListService {
+service IdListService {
     rpc findIdList(getIdList) returns (idListResponse) {};
 }
 

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"go-rpc/db"
 	"go-rpc/models"
+	"log"
+	"net"
 )
 
 func loadMocks() {
@@ -26,13 +28,23 @@ func loadMocks() {
 	}
 }
 
-func main() {
-
+func dbSetup() {
 	// init db instance
 	db.InitDb()
-	defer db.ClearDb()
 
 	// load mock data
 	loadMocks()
+}
 
+func main() {
+	dbSetup()
+	defer db.ClearDb()
+
+	address := "localhost:9876"
+	_, err := net.Listen("tcp", address)
+	if err != nil {
+		log.Fatalf("Error %v", err)
+	}
+
+	fmt.Println("Server listening on address:", address)
 }
