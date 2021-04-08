@@ -1,2 +1,3 @@
 # go-rpc
-Boilerplate for grpc with go. 
+
+Super simple boilerplate project for grpc with Golang.
