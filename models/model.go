@@ -2,9 +2,9 @@ package models
 
 type UserModel struct {
 	Id      int     `json:"id"`
-	fname   string  `json:"fname"`
-	city    string  `json;"city"`
-	phone   int     `json:"phone"`
-	height  float64 `json:"height"`
-	married bool    `json:"married"`
+	Fname   string  `json:"fname"`
+	City    string  `json;"city"`
+	Phone   int     `json:"phone"`
+	Height  float64 `json:"height"`
+	Married bool    `json:"married"`
 }

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "userpb";
+
+// user model struct defn
+message userModel {
+    int32 id = 1;
+    string fname = 2;
+    string city = 3;
+    int64 phone = 4;
+    float height = 6;
+    bool married = 7;
+}
+
+message getId {
+    int32 id = 1;
+}
+
+message getIdList {
+    repeated int32 ids = 1 [packed=true];
+}
+
+message idResponse {
+    userModel response = 1;
+}
+
+message idListResponse {
+    repeated userModel response = 1;
+}
+
+service idService {
+    rpc findId(getId) returns (idResponse) {};
+}
+
+service idListService {
+    rpc findIdList(getIdList) returns (idListResponse) {};
+}
+
+

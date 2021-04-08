@@ -29,3 +29,7 @@ func GetList(ids []int) []models.UserModel {
 
 	return list
 }
+
+func ClearDb() {
+	db = nil
+}
