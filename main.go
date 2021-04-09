@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"go-rpc/db"
+	"go-rpc/server"
+
 	"go-rpc/models"
 	"log"
 	"net"
@@ -41,10 +43,18 @@ func main() {
 	defer db.ClearDb()
 
 	address := "localhost:9876"
-	_, err := net.Listen("tcp", address)
+	listener, err := net.Listen("tcp", address)
 	if err != nil {
 		log.Fatalf("Error %v", err)
 	}
 
 	fmt.Println("Server listening on address:", address)
+
+	grpcServer := server.GetIdServiceInstance()
+
+	serverError := grpcServer.Serve(listener)
+	if serverError != nil {
+		log.Fatalf("Failed to serve %v", serverError)
+	}
+
 }

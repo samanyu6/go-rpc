@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package main;
 
-option go_package = "grpc/";
+option go_package = "userpb/";
 
 // user model struct defn
-message userModel {
+message UserModel {
     int32 id = 1;
     string fname = 2;
     string city = 3;
@@ -14,28 +14,24 @@ message userModel {
     bool married = 7;
 }
 
-message getId {
+message GetId {
     int32 id = 1;
 }
 
-message getIdList {
+message GetIdList {
     repeated int32 ids = 1 [packed=true];
 }
 
-message idResponse {
-    userModel response = 1;
+message IdResponse {
+    UserModel userModel = 1;
 }
 
-message idListResponse {
-    repeated userModel response = 1;
+message IdListResponse {
+    repeated UserModel userModelArr = 1;
 }
 
 service IdService {
-    rpc findId(getId) returns (idResponse) {};
+    rpc GetUser(GetId) returns (IdResponse) {};
+    rpc GetUserList(GetIdList) returns (IdListResponse) {};
 }
-
-service IdListService {
-    rpc findIdList(getIdList) returns (idListResponse) {};
-}
-
 
